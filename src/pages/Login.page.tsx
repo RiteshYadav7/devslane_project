@@ -1,16 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface Props {}
 
-const Login.page: React.FC<Props> = (props) => {
+const Login: React.FC<Props> = (props) => {
 
     return(
         <div>
             Login page.
+            Don't have an account.
+            <Link to="/signup">Click here</Link>
+
+            <Link to="/dashboard">Go to Dashboard</Link>
         </div>
     );
 };
 
-Login.page.defaultProps = {};
+Login.defaultProps = {};
 
-export default React.memo(Login.page);
+export default React.memo(Login);
