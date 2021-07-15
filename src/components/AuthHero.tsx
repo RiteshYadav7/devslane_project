@@ -6,7 +6,9 @@ interface Props {}
 const AuthHero: React.FC<Props> = (props) => {
   return (
     <div className="w-1/2 h-screen bg-black flex items-center">
-        <img src={hero} className="h-1/2 mx-auto" />
+        <div className="h-1/2 w-1/2 mx-auto relative">
+        <img src={hero} className="absolute" />
+        </div>
     </div>
   );
 };
