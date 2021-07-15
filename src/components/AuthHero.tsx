@@ -5,7 +5,9 @@ interface Props {}
 const AuthHero: React.FC<Props> = (props) => {
 
     return(
-        <div className="w-1/2 h-screen text-white bg-black">Logo will go here</div>
+        <div className="w-1/2 h-screen bg-black">
+            <div className="w-full h-full bg-hero"></div>
+        </div>
     );
 };
 

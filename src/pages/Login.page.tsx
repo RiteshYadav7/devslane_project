@@ -47,24 +47,19 @@ const Login: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-grow items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
-          />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+          <h2 className="mt-6 text-center text-4xl font-medium text-gray-900">
+            Log In to <span className="text-blue-600">CORK</span>
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{" "}
+          <p className="mt-2 text-center text-sm">
+            New Here?{" "}
             <Link
               to="/signup"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
+              className="font-medium text-blue-600 underline"
             >
-              Sign up
+              Create an account
             </Link>
           </p>
         </div>
@@ -84,7 +79,8 @@ const Login: React.FC<Props> = (props) => {
         >
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
+            <div className="flex relative pt-3 pb-7">
+              <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-blue-600"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
@@ -97,12 +93,13 @@ const Login: React.FC<Props> = (props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="inline-block align-middle max-w-2xl w-full ease-in-out border-b-2 pb-3 pl-9 rounded-none"
                 placeholder="Email address"
               />
             </div>
             {touched.email && <div className="text-red-500">{emailError}</div>}
-            <div>
+            <div className="flex relative pt-5 pb-7 mb-2">
+              <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-blue-600"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
@@ -115,43 +112,17 @@ const Login: React.FC<Props> = (props) => {
                 value={data.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="inline-block align-middle max-w-2xl w-full ease-in-out border-b-2 pb-3 pl-9 rounded-none"
                 placeholder="Password"
               />
             </div>
             {touched.password && <div className="text-red-500">{passwordError}</div>}
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-gray-900"
-              >
-                Remember me
-              </label>
-            </div>
-
-            <div className="text-sm">
-              <Link
-                to="/forgot-password"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Forgot your password?
-              </Link>
-            </div>
-          </div>
-
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 shadow-xl hover:shadow-none mt-8"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <HiLockClosed
@@ -159,10 +130,39 @@ const Login: React.FC<Props> = (props) => {
                   aria-hidden="true"
                 />
               </span>
-              Sign in
+              Log in
             </button>
           </div>
+
+          <div className="flex flex-col items-center justify-between">
+            <div className="flex items-center mt-10">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded cursor-pointer"
+              />
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-gray-400 cursor-pointer"
+              >
+                Keep me logged in
+              </label>
+            </div>
+
+            <div className="text-sm w-full text-center mt-5">
+              <Link
+                to="/forgot-password"
+                className="font-medium text-blue-600 tracking-widest"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+          </div>
         </form>
+        <p className="max-w-md mx-auto text-center pt-10">
+        © 2020 All Rights Reserved. <span className="text-blue-600">CORK</span> is a product of Designreset. <span className="text-blue-600">Cookie Preferences</span>, <span className="text-blue-600">Privacy</span>, and <span className="text-blue-600">Terms</span>.
+      </p>
       </div>
     </div>
   );
