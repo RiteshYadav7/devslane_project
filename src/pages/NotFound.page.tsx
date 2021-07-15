@@ -5,7 +5,7 @@ interface Props {}
 const NotFound: React.FC<Props> = (props) => {
 
     return(
-        <div className="bg-green-500 h-screen w-screen">
+        <div className="bg-red-500 h-screen w-screen">
             Page not found
         </div>
     );
