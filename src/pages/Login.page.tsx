@@ -47,7 +47,7 @@ const Login: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-grow items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-grow items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-4xl font-medium text-gray-900">
@@ -80,7 +80,7 @@ const Login: React.FC<Props> = (props) => {
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="flex relative pt-3 pb-7">
-              <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-blue-600"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+              <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-blue-600 my-3"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
@@ -93,13 +93,13 @@ const Login: React.FC<Props> = (props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required
-                className="inline-block align-middle max-w-2xl w-full ease-in-out border-b-2 pb-3 pl-9 rounded-none"
+                className="inline-block align-middle max-w-2xl w-full ease-in-out border-b-2 py-3 pl-9 rounded-none"
                 placeholder="Email address"
               />
             </div>
             {touched.email && <div className="text-red-500">{emailError}</div>}
             <div className="flex relative pt-5 pb-7 mb-2">
-              <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-blue-600"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+              <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-blue-600 my-3"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
@@ -112,7 +112,7 @@ const Login: React.FC<Props> = (props) => {
                 value={data.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className="inline-block align-middle max-w-2xl w-full ease-in-out border-b-2 pb-3 pl-9 rounded-none"
+                className="inline-block align-middle max-w-2xl w-full ease-in-out border-b-2 py-3 pl-9 rounded-none"
                 placeholder="Password"
               />
             </div>
