@@ -4,13 +4,11 @@ import { HiLockClosed } from "react-icons/hi";
 import { useState } from "react";
 // import * as yup from "yup";
 
-
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
-
-  const [data, setData] = useState({email: "", password: ""});
-  const [touched, setTouched] = useState({email: false, password: false});
+  const [data, setData] = useState({ email: "", password: "" });
+  const [touched, setTouched] = useState({ email: false, password: false });
   // const [submitting, setSubmitting] = useState(false);
 
   // const history = useHistory();
@@ -19,12 +17,12 @@ const Login: React.FC<Props> = (props) => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const nameOfChangeInput = event.target.name;
-    setData({...data, [nameOfChangeInput]: event.target.value});
+    setData({ ...data, [nameOfChangeInput]: event.target.value });
   };
 
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
     const nameOfBlurredInput = event.target.name;
-    setTouched({...touched, [nameOfBlurredInput]: true});
+    setTouched({ ...touched, [nameOfBlurredInput]: true });
   };
 
   let emailError = "";
@@ -34,13 +32,13 @@ const Login: React.FC<Props> = (props) => {
 
   // const passwordValidator = yup.string().required().min(8);
 
-  if(!data.email) {
+  if (!data.email) {
     emailError = "Email is required";
   } else if (!data.email.endsWith("@gmail.com")) {
     emailError = "Enter a valid email address";
   }
 
-  if(!data.password) {
+  if (!data.password) {
     passwordError = "Password is required";
   } else if (data.password.length < 8) {
     passwordError = "Password should be of atleast 8 characters";
@@ -55,32 +53,43 @@ const Login: React.FC<Props> = (props) => {
           </h2>
           <p className="mt-2 text-center text-sm">
             New Here?{" "}
-            <Link
-              to="/signup"
-              className="font-medium text-blue-600 underline"
-            >
+            <Link to="/signup" className="font-medium text-blue-600 underline">
               Create an account
             </Link>
           </p>
         </div>
-        <form 
+        <form
           className="mt-8 space-y-6"
           onSubmit={(event) => {
-            
             event.preventDefault();
 
-            if(emailError || passwordError) {
+            if (emailError || passwordError) {
               return;
             }
 
             console.log("logged in data: ", data);
-
-          }}  
+          }}
         >
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="flex relative pt-3 pb-7">
-              <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-blue-600 my-3"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="text-blue-600 my-3"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
@@ -99,7 +108,30 @@ const Login: React.FC<Props> = (props) => {
             </div>
             {touched.email && <div className="text-red-500">{emailError}</div>}
             <div className="flex relative pt-5 pb-7 mb-2">
-              <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-blue-600 my-3"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="text-blue-600 my-3"
+                >
+                  <rect
+                    x="3"
+                    y="11"
+                    width="18"
+                    height="11"
+                    rx="2"
+                    ry="2"
+                  ></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
@@ -116,7 +148,9 @@ const Login: React.FC<Props> = (props) => {
                 placeholder="Password"
               />
             </div>
-            {touched.password && <div className="text-red-500">{passwordError}</div>}
+            {touched.password && (
+              <div className="text-red-500">{passwordError}</div>
+            )}
           </div>
 
           <div>
@@ -161,8 +195,12 @@ const Login: React.FC<Props> = (props) => {
           </div>
         </form>
         <p className="max-w-md mx-auto text-center pt-10">
-        © 2020 All Rights Reserved. <span className="text-blue-600">CORK</span> is a product of Designreset. <span className="text-blue-600">Cookie Preferences</span>, <span className="text-blue-600">Privacy</span>, and <span className="text-blue-600">Terms</span>.
-      </p>
+          © 2020 All Rights Reserved.{" "}
+          <span className="text-blue-600">CORK</span> is a product of
+          Designreset. <span className="text-blue-600">Cookie Preferences</span>
+          , <span className="text-blue-600">Privacy</span>, and{" "}
+          <span className="text-blue-600">Terms</span>.
+        </p>
       </div>
     </div>
   );
