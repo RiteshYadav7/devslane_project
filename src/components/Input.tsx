@@ -16,7 +16,7 @@ const Input: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div>
+      <div className="w-full">
         {id && placeholder && (
           <label htmlFor={id} className="sr-only">
             {placeholder}
@@ -31,8 +31,9 @@ const Input: React.FC<Props> = ({
           }
           placeholder={placeholder}
         />
+      
+        {touched && <div className="text-red-500">{error}</div>}
       </div>
-      {touched && <div className="text-red-500">{error}</div>}
     </>
   );
 };
