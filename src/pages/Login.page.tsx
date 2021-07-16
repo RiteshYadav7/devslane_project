@@ -1,48 +1,41 @@
-import React, { ChangeEvent, FocusEvent } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { HiLockClosed } from "react-icons/hi";
-import { useState } from "react";
-// import * as yup from "yup";
+import { FaSpinner } from "react-icons/fa";
+// import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import Input from "../components/Input";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
-  const [data, setData] = useState({ email: "", password: "" });
-  const [touched, setTouched] = useState({ email: false, password: false });
-  // const [submitting, setSubmitting] = useState(false);
+  const history = useHistory();
 
-  // const history = useHistory();
-
-  // console.log(history);
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const nameOfChangeInput = event.target.name;
-    setData({ ...data, [nameOfChangeInput]: event.target.value });
-  };
-
-  const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
-    const nameOfBlurredInput = event.target.name;
-    setTouched({ ...touched, [nameOfBlurredInput]: true });
-  };
-
-  let emailError = "";
-  let passwordError = "";
-
-  // const emailValidator = yup.string().required().email();
-
-  // const passwordValidator = yup.string().required().min(8);
-
-  if (!data.email) {
-    emailError = "Email is required";
-  } else if (!data.email.endsWith("@gmail.com")) {
-    emailError = "Enter a valid email address";
-  }
-
-  if (!data.password) {
-    passwordError = "Password is required";
-  } else if (data.password.length < 8) {
-    passwordError = "Password should be of atleast 8 characters";
-  }
+  const {
+    handleSubmit,
+    getFieldProps,
+    touched,
+    isSubmitting,
+    errors,
+    isValid,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8),
+    }),
+    onSubmit: (data) => {
+      console.log("form submitting", data);
+      setTimeout(() => {
+        console.log("form submitted successfully");
+        history.push("/dashboard");
+      }, 5000);
+    },
+  });
 
   return (
     <div className="min-h-screen flex flex-grow items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -58,104 +51,69 @@ const Login: React.FC<Props> = (props) => {
             </Link>
           </p>
         </div>
-        <form
-          className="mt-8 space-y-6"
-          onSubmit={(event) => {
-            event.preventDefault();
-
-            if (emailError || passwordError) {
-              return;
-            }
-
-            console.log("logged in data: ", data);
-          }}
-        >
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-            <div className="flex relative pt-3 pb-7">
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="text-blue-600 my-3"
-                >
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
+            <div className="flex pt-3 pb-7">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="text-blue-600 my-3"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <Input
+                id="email"
                 type="email"
                 autoComplete="email"
-                value={data.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
                 required
-                className="inline-block align-middle max-w-2xl w-full ease-in-out border-b-2 py-3 pl-9 rounded-none"
+                touched={touched.email}
+                error={errors.email}
+                {...getFieldProps("email")}
                 placeholder="Email address"
               />
             </div>
-            {touched.email && <div className="text-red-500">{emailError}</div>}
-            <div className="flex relative pt-5 pb-7 mb-2">
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="text-blue-600 my-3"
-                >
-                  <rect
-                    x="3"
-                    y="11"
-                    width="18"
-                    height="11"
-                    rx="2"
-                    ry="2"
-                  ></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-              </div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
+            <div className="flex pt-3 pb-7">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="text-blue-600 my-3"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <Input
                 id="password"
-                name="password"
                 type="password"
                 autoComplete="current-password"
                 required
-                value={data.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className="inline-block align-middle max-w-2xl w-full ease-in-out border-b-2 py-3 pl-9 rounded-none"
+                touched={touched.password}
+                error={errors.password}
+                {...getFieldProps("password")}
                 placeholder="Password"
               />
             </div>
-            {touched.password && (
-              <div className="text-red-500">{passwordError}</div>
-            )}
           </div>
 
           <div>
             <button
               type="submit"
+              disabled={!isValid}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 shadow-xl hover:shadow-none mt-8"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -166,6 +124,7 @@ const Login: React.FC<Props> = (props) => {
               </span>
               Log in
             </button>
+            {isSubmitting && <FaSpinner className="animate-spin" />}
           </div>
 
           <div className="flex flex-col items-center justify-between">
