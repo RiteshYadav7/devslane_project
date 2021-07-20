@@ -2,10 +2,10 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { HiLockClosed } from "react-icons/hi";
 import { FaSpinner } from "react-icons/fa";
-// import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import Input from "../components/Input";
+import Input from "../components/Input/Input";
+import Button from "../components/Button/Button";
 
 interface Props {}
 
@@ -18,7 +18,6 @@ const Login: React.FC<Props> = (props) => {
     touched,
     isSubmitting,
     errors,
-    isValid,
   } = useFormik({
     initialValues: {
       email: "",
@@ -111,19 +110,7 @@ const Login: React.FC<Props> = (props) => {
           </div>
 
           <div>
-            <button
-              type="submit"
-              disabled={!isValid}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 shadow-xl hover:shadow-none mt-8"
-            >
-              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                <HiLockClosed
-                  className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                  aria-hidden="true"
-                />
-              </span>
-              Log in
-            </button>
+            <Button theme="primary" Icon={HiLockClosed}>Log in</Button>
             {isSubmitting && <FaSpinner className="animate-spin" />}
           </div>
 
