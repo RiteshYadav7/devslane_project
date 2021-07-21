@@ -31,7 +31,7 @@ const Input: React.FC<Props> = ({
           }
           placeholder={placeholder}
         />
-      
+
         {touched && <div className="text-red-500">{error}</div>}
       </div>
     </>

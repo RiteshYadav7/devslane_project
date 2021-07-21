@@ -6,10 +6,12 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
+import Alerts from "../components/Alerts/Alerts";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
+
   const history = useHistory();
 
   const {
@@ -32,7 +34,7 @@ const Login: React.FC<Props> = (props) => {
       setTimeout(() => {
         console.log("form submitted successfully");
         history.push("/dashboard");
-      }, 5000);
+      }, 3000);
     },
   });
 
@@ -41,7 +43,7 @@ const Login: React.FC<Props> = (props) => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-4xl font-medium text-gray-900">
-            Log In to <span className="text-blue-600">CORK</span>
+            Log In to <span className="text-blue-600">DEVS</span>
           </h2>
           <p className="mt-2 text-center text-sm">
             New Here?{" "}
@@ -142,11 +144,12 @@ const Login: React.FC<Props> = (props) => {
         </form>
         <p className="max-w-md mx-auto text-center pt-10">
           © 2020 All Rights Reserved.{" "}
-          <span className="text-blue-600">CORK</span> is a product of
+          <span className="text-blue-600">DEVS</span> is a product of
           Designreset. <span className="text-blue-600">Cookie Preferences</span>
           , <span className="text-blue-600">Privacy</span>, and{" "}
           <span className="text-blue-600">Terms</span>.
         </p>
+        <Alerts />
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ const Button: React.FC<Props> = ({
       {...rest}
       type="submit"
       className={
-        "group relative w-full flex justify-center shadow-xl py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white mt-8 " + 
+        "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-xl text-white " + 
         themeClasses + 
         " " + 
         className
