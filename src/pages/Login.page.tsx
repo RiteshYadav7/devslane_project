@@ -7,11 +7,11 @@ import * as yup from "yup";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 import Alerts from "../components/Alerts/Alerts";
+import { login } from "../api";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
-
   const history = useHistory();
 
   const {
@@ -30,11 +30,9 @@ const Login: React.FC<Props> = (props) => {
       password: yup.string().required().min(8),
     }),
     onSubmit: (data) => {
-      console.log("form submitting", data);
-      setTimeout(() => {
-        console.log("form submitted successfully");
+      login(data).then(() => {
         history.push("/dashboard");
-      }, 3000);
+      });
     },
   });
 
@@ -112,7 +110,9 @@ const Login: React.FC<Props> = (props) => {
           </div>
 
           <div>
-            <Button theme="primary" Icon={HiLockClosed}>Log in</Button>
+            <Button theme="primary" Icon={HiLockClosed}>
+              Log in
+            </Button>
             {isSubmitting && <FaSpinner className="animate-spin" />}
           </div>
 
@@ -149,7 +149,6 @@ const Login: React.FC<Props> = (props) => {
           , <span className="text-blue-600">Privacy</span>, and{" "}
           <span className="text-blue-600">Terms</span>.
         </p>
-        <Alerts />
       </div>
     </div>
   );
