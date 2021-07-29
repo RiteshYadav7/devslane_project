@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
+import { User } from "../../models/User";
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
 import RecordingsPage from "./Recordings.page";
@@ -19,7 +20,7 @@ const AppContainer: React.FC<Props> = (props) => {
           <RecordingsPage></RecordingsPage>
         </Route>
         <Route path="/batch/:batchNumber/lecture/:lectureNumber">
-            <LecturePage />
+          <LecturePage />
         </Route>
       </Switch>
     </div>

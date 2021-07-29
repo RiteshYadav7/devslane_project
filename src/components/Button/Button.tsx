@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React from "react";
 import { ButtonHTMLAttributes } from "react";
 import { IconType } from "react-icons";
@@ -29,16 +30,18 @@ const Button: React.FC<Props> = ({
     <button
       {...rest}
       type="submit"
-      className={
-        "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-xl text-white " + 
-        themeClasses + 
-        " " + 
+      className={classNames(
+        "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-xl text-white disabled:cursor-not-allowed",
+        themeClasses,
         className
-      }
+      )}
     >
       {Icon && (
         <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-          <Icon className={"h-5 w-5 " + iconThemeClasses} aria-hidden="true" />
+          <Icon
+            className={classNames("h-5 w-5", iconThemeClasses)}
+            aria-hidden="true"
+          />
         </span>
       )}
       {children}
