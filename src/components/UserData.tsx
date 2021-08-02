@@ -29,6 +29,7 @@ const UserData: React.FC<Props> = (props) => {
     }
   }, [query]);
 
+
   return (
     <div className="w-full h-full">
       <div>
@@ -37,9 +38,9 @@ const UserData: React.FC<Props> = (props) => {
         />
         <div>
           {groupData.map(data => {
-            return (
-              <div>{data.creator.first_name} - {data.name}</div>
-            )
+              return (
+                <div>{data.creator.first_name} - {data.name}</div>
+              )
           })}
         </div>
       </div>

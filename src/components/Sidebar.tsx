@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import { logout } from "../api/auth";
-import AppContext from "../App.context";
+import { User } from "../models/User";
+import { AppState, useAppSelector } from "../store";
 import Button from "./Button/Button";
 
 interface Props {}
 
 const Sidebar: React.FC<Props> = (props) => {
-  const { user } = useContext(AppContext);
+
+  const user = useAppSelector((state) => state.me);
 
   return (
     <div className="h-screen bg-gray-400 w-80">

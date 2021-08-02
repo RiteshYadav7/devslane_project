@@ -8,13 +8,14 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { login } from "../../api/auth";
 import AppContext from "../../App.context";
+import { useDispatch } from "react-redux";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
   const history = useHistory();
 
-  const {setUser} = useContext(AppContext);
+  const dispatch = useDispatch();
 
   const {
     handleSubmit,
@@ -34,7 +35,7 @@ const Login: React.FC<Props> = (props) => {
     }),
     onSubmit: (data) => {
       login(data).then((u) => {
-        setUser(u);
+        dispatch({type: "me/login", payload: u});
         history.push("/dashboard");
       });
     },
