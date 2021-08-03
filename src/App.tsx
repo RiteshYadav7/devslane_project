@@ -9,7 +9,7 @@ import { User } from "./models/User";
 import { me } from "./api";
 import AppContext from "./App.context";
 import { useDispatch, useSelector } from "react-redux";
-import { AppState, meFetchAction, useAppSelector } from "./store";
+import { uiSidebarToggle, meFetchAction, useAppSelector } from "./store";
 
 interface Props {}
 
@@ -26,7 +26,13 @@ const App: React.FC<Props> = () => {
     }
 
     me().then((u) => dispatch(meFetchAction(u)));
-  }, [token]);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log(uiSidebarToggle(false));
+    }, 8000);
+  }, []);
 
   console.log("App is rendering");
 
