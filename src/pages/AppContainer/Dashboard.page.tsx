@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-// import { fetchGroups } from "../api/groups";
 import UserData from "../../components/UserData";
-
-import {fetchGroups, logout} from "../../api";
 
 interface Props {}
 

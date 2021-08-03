@@ -6,6 +6,7 @@ import Sidebar from "../../components/Sidebar";
 import { User } from "../../models/User";
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
+import ProfilePage from "./Profile.page";
 import RecordingsPage from "./Recordings.page";
 
 interface Props {}
@@ -15,10 +16,9 @@ const AppContainer: React.FC<Props> = (props) => {
     <>
       <div>
         <Nav />
-        <Header />
       </div>
       <div className="flex flex-row">
-        <Sidebar></Sidebar>
+        <Sidebar/>
         <Switch>
           <Route path="/dashboard">
             <DashboardPage></DashboardPage>
@@ -28,6 +28,9 @@ const AppContainer: React.FC<Props> = (props) => {
           </Route>
           <Route path="/batch/:batchNumber/lecture/:lectureNumber">
             <LecturePage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
           </Route>
         </Switch>
       </div>

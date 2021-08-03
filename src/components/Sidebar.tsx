@@ -12,17 +12,9 @@ const Sidebar: React.FC<Props> = (props) => {
   const user = useAppSelector((state) => state.me);
 
   return (
-    <div className="h-screen bg-gray-400 w-80">
+    <div className="h-screen bg-gray-200 w-60">
       <div>This is sidebar</div>
       <div className="text-red-500">{user!.first_name}</div>
-      <Button
-        onClick={() => {
-          logout();
-          window.location.href = "/login";
-        }}
-      >
-        Logout
-      </Button>
     </div>
   );
 };

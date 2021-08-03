@@ -1,13 +1,12 @@
 import { Fragment } from "react";
-import { Menu, Transition } from "headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import { HiChevronDown } from "react-icons/hi";
 import classNames from "classnames";
+import React from "react";
 
-// function classNames(...classes) {
-//   return classes.filter(Boolean).join(' ')
-// }
+interface Props {}
 
-export default function Example() {
+const DropDown: React.FC<Props> = (props) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       {({ open }) => (
@@ -15,7 +14,10 @@ export default function Example() {
           <div>
             <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
               Settings
-              <HiChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+              <HiChevronDown
+                className="-mr-1 ml-2 h-5 w-5"
+                aria-hidden="true"
+              />
             </Menu.Button>
           </div>
 
@@ -39,8 +41,8 @@ export default function Example() {
                     <a
                       href="#"
                       className={classNames(
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm'
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block px-4 py-2 text-sm"
                       )}
                     >
                       Edit
@@ -54,21 +56,23 @@ export default function Example() {
                     <a
                       href="#"
                       className={classNames(
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm'
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block px-4 py-2 text-sm"
                       )}
                     >
                       Mail
                     </a>
                   )}
                 </Menu.Item>
+              </div>
+              <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (
                     <a
                       href="#"
                       className={classNames(
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm'
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block px-4 py-2 text-sm"
                       )}
                     >
                       Download
@@ -81,5 +85,9 @@ export default function Example() {
         </>
       )}
     </Menu>
-  )
-}
+  );
+};
+
+DropDown.defaultProps = {};
+
+export default React.memo(DropDown);
