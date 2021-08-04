@@ -5,12 +5,9 @@ import AppContainerPageLazy from "./pages/AppContainer/AppContainer.lazy";
 import AuthLazy from "./pages/Auth/Auth.lazy";
 import { LS_AUTH_TOKEN } from "./api/base";
 import NotFoundPage from "./pages/NotFound.page";
-import { User } from "./models/User";
 import { me } from "./api";
-import AppContext from "./App.context";
-import { useDispatch, useSelector } from "react-redux";
 import { useAppSelector } from "./store";
-import { meFetchAction } from "./actions/auth.actions.";
+import { authActions } from "./actions/auth.actions.";
 
 interface Props {}
 
@@ -19,7 +16,7 @@ const App: React.FC<Props> = () => {
     (state) => state.auth.id && state.users.byId[state.auth.id]
   );
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
@@ -28,7 +25,7 @@ const App: React.FC<Props> = () => {
       return;
     }
 
-    me().then((u) => dispatch(meFetchAction(u)));
+    me().then((u) => authActions.fetch(u));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   console.log("App is rendering");

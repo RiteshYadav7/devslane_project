@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { groupsActions } from "../actions/groups.actions.";
 import { fetchGroups } from "../api";
 import { useAppSelector } from "../store";
 import Input from "./Input/Input";
@@ -35,15 +35,11 @@ const UserData: React.FC<Props> = () => {
     return groups;
   });
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchGroups({ status: "all-groups", query }).then((groups) => {
-      dispatch({
-        type: "groups/query_completed",
-        payload: { groups: groups, query },
-      });
-    });
+    fetchGroups({ status: "all-groups", query }).then((groups) =>
+      groupsActions.queryCompleted(query, groups));
   }, [query]);
 
   return (
@@ -65,7 +61,7 @@ const UserData: React.FC<Props> = () => {
         type="text"
         value={query}
         onChange={(e) => {
-          dispatch({ type: "groups/query", payload: e.target.value });
+          groupsActions.query(e.target.value);
         }}
         placeholder="Search..."
         className="border rounded"

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { HiLockClosed } from "react-icons/hi";
 import { FaSpinner } from "react-icons/fa";
@@ -7,16 +7,14 @@ import * as yup from "yup";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { login } from "../../api/auth";
-import AppContext from "../../App.context";
-import { useDispatch } from "react-redux";
-import { meLoginAction } from "../../actions/auth.actions.";
+import { authActions } from "../../actions/auth.actions.";
 
 interface Props {}
 
 const Login: React.FC<Props> = (props) => {
   const history = useHistory();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const {
     handleSubmit,
@@ -36,7 +34,7 @@ const Login: React.FC<Props> = (props) => {
     }),
     onSubmit: (data) => {
       login(data).then((u) => {
-        dispatch(meLoginAction(u));
+        authActions.login(u);
         history.push("/dashboard");
       });
     },
