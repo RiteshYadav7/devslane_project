@@ -9,12 +9,15 @@ import { User } from "./models/User";
 import { me } from "./api";
 import AppContext from "./App.context";
 import { useDispatch, useSelector } from "react-redux";
-import { uiSidebarToggle, meFetchAction, useAppSelector } from "./store";
+import { useAppSelector } from "./store";
+import { meFetchAction } from "./actions/auth.actions.";
 
 interface Props {}
 
 const App: React.FC<Props> = () => {
-  const user = useAppSelector((state) => state.me);
+  const user = useAppSelector(
+    (state) => state.auth.id && state.users.byId[state.auth.id]
+  );
 
   const dispatch = useDispatch();
 
@@ -26,13 +29,7 @@ const App: React.FC<Props> = () => {
     }
 
     me().then((u) => dispatch(meFetchAction(u)));
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log(uiSidebarToggle(false));
-    }, 8000);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   console.log("App is rendering");
 

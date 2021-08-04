@@ -9,6 +9,7 @@ import Button from "../../components/Button/Button";
 import { login } from "../../api/auth";
 import AppContext from "../../App.context";
 import { useDispatch } from "react-redux";
+import { meLoginAction } from "../../actions/auth.actions.";
 
 interface Props {}
 
@@ -35,7 +36,7 @@ const Login: React.FC<Props> = (props) => {
     }),
     onSubmit: (data) => {
       login(data).then((u) => {
-        dispatch({type: "me/login", payload: u});
+        dispatch(meLoginAction(u));
         history.push("/dashboard");
       });
     },

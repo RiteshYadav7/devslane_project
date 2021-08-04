@@ -1,16 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { HiSearch } from "react-icons/hi";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchGroups } from "../api";
-import { Group } from "../models/Group";
 import { useAppSelector } from "../store";
 import Input from "./Input/Input";
-import Search from "./Search/Search";
 
 interface Props {}
 
-const UserData: React.FC<Props> = (props) => {
+const UserData: React.FC<Props> = () => {
   // const [query, setQuery] = useState("");
   // const [groupData, setGroupData] = useState<Group[]>([]);
 
@@ -31,11 +27,11 @@ const UserData: React.FC<Props> = (props) => {
   //   }
   // }, [query]);
 
-  const query = useAppSelector((state) => state.groupQuery);
+  const query = useAppSelector((state) => state.groups.query);
 
   const groups = useAppSelector((state) => {
-    const groupsIds = state.groupQueryMap[state.groupQuery] || [];
-    const groups = groupsIds.map((id) => state.groups[id]);
+    const groupsIds = state.groups.queryMap[state.groups.query] || [];
+    const groups = groupsIds.map((id) => state.groups.byId[id]);
     return groups;
   });
 
