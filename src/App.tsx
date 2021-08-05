@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import React, { Suspense, useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import AppContainerPageLazy from "./pages/AppContainer/AppContainer.lazy";
@@ -8,13 +8,12 @@ import NotFoundPage from "./pages/NotFound.page";
 import { me } from "./api";
 import { useAppSelector } from "./store";
 import { authActions } from "./actions/auth.actions.";
+import { meSelector } from "./selectors/auth.selectors";
 
 interface Props {}
 
 const App: React.FC<Props> = () => {
-  const user = useAppSelector(
-    (state) => state.auth.id && state.users.byId[state.auth.id]
-  );
+  const user = useAppSelector(meSelector);
 
   // const dispatch = useDispatch();
 
@@ -26,7 +25,7 @@ const App: React.FC<Props> = () => {
     }
 
     me().then((u) => authActions.fetch(u));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   console.log("App is rendering");
 

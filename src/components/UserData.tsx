@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { groupsActions } from "../actions/groups.actions.";
 import { fetchGroups } from "../api";
+import { groupQuerySelector } from "../selectors/groups.selectors";
 import { useAppSelector } from "../store";
 import Input from "./Input/Input";
 
@@ -27,7 +28,7 @@ const UserData: React.FC<Props> = () => {
   //   }
   // }, [query]);
 
-  const query = useAppSelector((state) => state.groups.query);
+  const query = useAppSelector(groupQuerySelector);
 
   const groups = useAppSelector((state) => {
     const groupsIds = state.groups.queryMap[state.groups.query] || [];
@@ -39,7 +40,8 @@ const UserData: React.FC<Props> = () => {
 
   useEffect(() => {
     fetchGroups({ status: "all-groups", query }).then((groups) =>
-      groupsActions.queryCompleted(query, groups));
+      groupsActions.queryCompleted(query, groups)
+    );
   }, [query]);
 
   return (
@@ -68,9 +70,7 @@ const UserData: React.FC<Props> = () => {
       ></Input>
       <div>
         {groups.map((group) => {
-          return(
-          <div>{group.name}</div>
-          );
+          return <div>{group.name}</div>;
         })}
       </div>
     </div>

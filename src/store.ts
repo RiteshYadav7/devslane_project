@@ -10,11 +10,10 @@ import { userReducer } from "./reducers/users.reducer";
 //   groups: GroupState;
 // }
 
-
 const reducer = combineReducers({
   users: userReducer,
   groups: groupReducer,
-  auth: authReducer
+  auth: authReducer,
 });
 
 export const store = createStore(
@@ -22,6 +21,6 @@ export const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-type AppState = ReturnType<typeof store.getState>;
+export type AppState = ReturnType<typeof store.getState>;
 
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
