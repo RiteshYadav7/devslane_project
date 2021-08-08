@@ -39,3 +39,12 @@ export const groupByIdSelector = createSelector(
 //   const groups = groupsIds.map((id) => byId[id]);
 //   return groups;
 // };
+
+export const groupsSelector = createSelector(
+  [groupQuerySelector, groupByIdSelector, groupQueryMapSelector],
+  (query, byId, queryMap) => {
+    const groupsIds = queryMap[query] || [];
+    const groups = groupsIds.map((id) => byId[id]);
+    return groups;
+  }
+);

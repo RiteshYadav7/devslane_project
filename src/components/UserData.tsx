@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { groupsActions } from "../actions/groups.actions.";
 import { fetchGroups } from "../api";
-import { groupQuerySelector } from "../selectors/groups.selectors";
+import { groupQuerySelector, groupsSelector } from "../selectors/groups.selectors";
 import { useAppSelector } from "../store";
 import Input from "./Input/Input";
 
@@ -30,11 +30,7 @@ const UserData: React.FC<Props> = () => {
 
   const query = useAppSelector(groupQuerySelector);
 
-  const groups = useAppSelector((state) => {
-    const groupsIds = state.groups.queryMap[state.groups.query] || [];
-    const groups = groupsIds.map((id) => state.groups.byId[id]);
-    return groups;
-  });
+  const groups = useAppSelector(groupsSelector);
 
   // const dispatch = useDispatch();
 
