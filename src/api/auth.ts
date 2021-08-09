@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authActions } from "../actions/auth.actions.";
 import { User } from "../models/User";
 import { BASE_URL, LS_AUTH_TOKEN } from "./base";
 
@@ -36,5 +37,14 @@ interface MeResponse {
 
 export const me = () => {
   const url = BASE_URL + "/me";
-  return axios.get<MeResponse>(url).then(response => response.data.data);
+  return axios
+    .get<MeResponse>(url)
+    .then((response) => response.data.data);
+};
+
+export const updateMe = () => {
+  const url = BASE_URL + "/me";
+  return axios
+    .patch(url, { first_name: "Hello" })
+    .then((response) => response.data.data);
 };

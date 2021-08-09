@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
-import { groupsActions } from "../actions/groups.actions.";
-import { fetchGroups } from "../api";
-import { groupQuerySelector, groupsSelector } from "../selectors/groups.selectors";
+import React from "react";
+import { FaSpinner } from "react-icons/fa";
+import { fetchGroups } from "../middlewares/groups.middleware";
+import {
+  groupLoadingSelector,
+  groupQuerySelector,
+  groupsSelector,
+} from "../selectors/groups.selectors";
 import { useAppSelector } from "../store";
 import Input from "./Input/Input";
 
@@ -30,15 +34,17 @@ const UserData: React.FC<Props> = () => {
 
   const query = useAppSelector(groupQuerySelector);
 
+  const loading = useAppSelector(groupLoadingSelector);
+
   const groups = useAppSelector(groupsSelector);
 
   // const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetchGroups({ status: "all-groups", query }).then((groups) =>
-      groupsActions.queryCompleted(query, groups)
-    );
-  }, [query]);
+  // useEffect(() => {
+  //   fetchGroups({ status: "all-groups", query }).then((groups) =>
+  //     groupsActions.queryCompleted(query, groups)
+  //   );
+  // }, [query]);
 
   return (
     <div className="w-full h-full">
@@ -59,11 +65,13 @@ const UserData: React.FC<Props> = () => {
         type="text"
         value={query}
         onChange={(e) => {
-          groupsActions.query(e.target.value);
+          // groupsActions.query(e.target.value);
+          fetchGroups({ query: e.target.value, status: "all-groups" });
         }}
         placeholder="Search..."
         className="border rounded"
       ></Input>
+      {loading && <FaSpinner className="mt-5 animate-spin"></FaSpinner>}
       <div>
         {groups.map((group) => {
           return <div>{group.name}</div>;

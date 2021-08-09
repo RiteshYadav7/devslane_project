@@ -16,10 +16,10 @@ export const userReducer: Reducer<UserState> = (
   switch (action.type) {
     case ME_FETCH:
     case ME_LOGIN:
-      const user: User = action.payload;
-      return { ...state, byId: { ...state.byId, [user.id]: user } };
+      // const user: User = action.payload;
+      // return { ...state, byId: { ...state.byId, [user.id]: user } };
 
-      // return addOne(state, action.payload) as UserState;
+      return addOne(state, action.payload) as UserState;
     default:
       return state;
   }
