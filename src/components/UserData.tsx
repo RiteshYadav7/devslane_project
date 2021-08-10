@@ -2,7 +2,7 @@ import React from "react";
 import { FaSpinner } from "react-icons/fa";
 import { fetchGroups } from "../middlewares/groups.middleware";
 import {
-  groupLoadingSelector,
+  groupsLoadingSelector,
   groupQuerySelector,
   groupsSelector,
 } from "../selectors/groups.selectors";
@@ -34,7 +34,7 @@ const UserData: React.FC<Props> = () => {
 
   const query = useAppSelector(groupQuerySelector);
 
-  const loading = useAppSelector(groupLoadingSelector);
+  const loading = useAppSelector(groupsLoadingSelector);
 
   const groups = useAppSelector(groupsSelector);
 
