@@ -13,10 +13,7 @@ interface GroupResponse {
   data: Group[];
 }
 
-export const fetchGroups = (
-  data: GroupRequest,
-  token?: CancelToken
-) => {
+export const fetchGroups = (data: GroupRequest, token?: CancelToken) => {
   const url = BASE_URL + "/groups";
 
   return axios

@@ -5,9 +5,10 @@ import AppContainerPageLazy from "./pages/AppContainer/AppContainer.lazy";
 import AuthLazy from "./pages/Auth/Auth.lazy";
 import { LS_AUTH_TOKEN } from "./api/base";
 import NotFoundPage from "./pages/NotFound.page";
-import { me } from "./middlewares/auth.middleware";
 import { useAppSelector } from "./store";
 import { meSelector } from "./selectors/auth.selectors";
+import { authActions } from "./actions/auth.actions.";
+import { me } from "./api/auth";
 
 interface Props {}
 
@@ -23,7 +24,7 @@ const App: React.FC<Props> = () => {
       return;
     }
 
-    me();
+    me().then((u) => authActions.fetch(u));
   }, []); // eslint-disable-line
 
   console.log("App is rendering");

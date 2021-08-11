@@ -1,6 +1,7 @@
 import React from "react";
 import { FaSpinner } from "react-icons/fa";
-import { fetchGroups } from "../middlewares/groups.middleware";
+import { useDispatch } from "react-redux";
+import { queryChangedAction } from "../actions/groups.actions.";
 import {
   groupsLoadingSelector,
   groupQuerySelector,
@@ -38,7 +39,7 @@ const UserData: React.FC<Props> = () => {
 
   const groups = useAppSelector(groupsSelector);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   fetchGroups({ status: "all-groups", query }).then((groups) =>
@@ -66,7 +67,8 @@ const UserData: React.FC<Props> = () => {
         value={query}
         onChange={(e) => {
           // groupsActions.query(e.target.value);
-          fetchGroups({ query: e.target.value, status: "all-groups" });
+          // fetchGroups({ query: e.target.value, status: "all-groups" });
+          dispatch(queryChangedAction(e.target.value));
         }}
         placeholder="Search..."
         className="border rounded"
